@@ -3,36 +3,24 @@ import logo from './logo.svg';
 import './App.css';
 import ChatWindow from './ChatWindow';
 
-/*
-This exercise will help you practice many of your newly aquired React skills.
-
-The instructions are included in the `instructions.md` file.
-*/
-
-const users = [{ username: 'Amy' }, { username: 'John' }];
+const users = [{ username: 'Amy' }, { username: 'Jon' }];
 
 class App extends Component {
-  /*
-  If the user did not type anything, he/she should not be
-  allowed to submit.
-  */
   state = {
     messages: [], //will hold this --> {usermame: 'Amy', text: 'a'}
   };
 
-  addMessage = (username, message) => {
+  onMessage = (username, message) => {
     const newMessage = {
       ['username']: username,
       ['text']: message,
     };
-    
     this.setState(currState => ({
       messages: currState.messages.concat([newMessage]),
     }));
   };
 
   render() {
-    
     const { messages } = this.state;
 
     return (
@@ -47,7 +35,7 @@ class App extends Component {
               key={user.username}
               user={user}
               messages={messages}
-              addMessage={this.addMessage}
+              onMessage={this.onMessage}
             />
           ))}
         </div>
